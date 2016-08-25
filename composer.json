@@ -1,0 +1,17 @@
+{
+    "name": "ddavidov/test",
+    "description": "Test prj",
+    "license": "GNU/GPL",
+    "authors": [
+        {
+            "name": "ddavidov",
+            "email": "ddavidov@mindk.com"
+        }
+    ],
+    "autoload":{
+        "psr-4": {
+            "App\\": "app/",
+            "Framework\\": "vendor/mindk/framework"
+        }
+    }
+}

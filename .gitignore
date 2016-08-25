@@ -1,0 +1,6 @@
+.idea
+autoload.php
+error.log
+/vendor/
+!/vendor/dima
+config/config.php
