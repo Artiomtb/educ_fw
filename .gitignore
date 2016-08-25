@@ -2,5 +2,5 @@
 autoload.php
 error.log
 /vendor/
-!/vendor/dima
+!vendor/mindk/
 config/config.php
