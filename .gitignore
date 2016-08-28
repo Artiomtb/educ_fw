@@ -1,6 +1,6 @@
 .idea
 autoload.php
 error.log
-/vendor/
-!vendor/mindk/
+vendor/*
+!vendor/mindk
 config/config.php
