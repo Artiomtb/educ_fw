@@ -38,9 +38,10 @@ class Router
         $parsed_routes_config = [];
 
         foreach ($routes_config as $route_key => $route_config) {
-            $parsed_routes_config[] = [
+            $parsed_routes_config[$route_key] = [
                 'key' => $route_key,
-                'pattern' => $this->preProcessPattern($route_config),
+                'pattern' => $route_config['pattern'],
+                'regexp' => $this->preProcessPattern($route_config),
                 'http_method' => isset($route_config['method']) ? $route_config['method'] : 'GET',
                 'class' => $this->getClassFromConfig($route_config),
                 'method' => $this->getMethodFromConfig($route_config),
@@ -71,6 +72,24 @@ class Router
         }
 
         return null;
+    }
+
+    /**
+     * Returns URI by route key and variables
+     *
+     * @param string $route_key
+     * @param array $variables associative array with variables
+     *
+     * @return string URI
+     */
+    public function getURI($route_key, $variables = [])
+    {
+        $route = $this->routes[$route_key]['pattern'];
+        foreach ($variables as $var_name => $var_value) {
+            $route = str_replace('{' . $var_name . '}', $var_value, $route);
+        }
+
+        return $route;
     }
 
     /**
@@ -146,7 +165,7 @@ class Router
      */
     private function checkAndGetVariables($uri, $route)
     {
-        preg_match($route['pattern'], $uri, $output);
+        preg_match($route['regexp'], $uri, $output);
 
         $regexp_res_count = count($output);
         if ($regexp_res_count > 0) {
