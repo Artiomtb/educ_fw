@@ -18,6 +18,7 @@ class App
 
     /**
      * App constructor.
+     * @param array $config
      */
     public function __construct($config = [])
     {
@@ -27,12 +28,21 @@ class App
     /**
      * Application exec
      */
-    public function run(){
-
+    public function run()
+    {
+        $router = new Router(isset($this->config['routes']) ? $this->config['routes'] : []);
+        $route = $router->getRoute();
+        if (!$route) {
+            //todo throw 404
+        } else {
+            //todo call controller, get response and render
+            echo call_user_func_array('App\\Controller\\' . $route['class'] . '::' . $route['method'], $route['variables']);
+        }
     }
 
 
-    public function done(){
+    public function done()
+    {
 
     }
 }
