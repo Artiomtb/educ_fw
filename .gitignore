@@ -4,3 +4,4 @@ error.log
 vendor/*
 !vendor/mindk
 config/config.php
+*.log

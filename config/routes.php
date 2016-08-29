@@ -23,7 +23,7 @@ return [
         'action' => 'ApiController@getItem'
     ],
     'api_create_item' => [
-        'pattern' => '/api/',
+        'pattern' => '/api',
         'action' => 'ApiController@createItem',
         'method' => 'POST'
     ],

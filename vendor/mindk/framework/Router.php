@@ -51,7 +51,7 @@ class Router
 
         $this->routes = $parsed_routes_config;
     }
-
+ 
     public function getRoute()
     {
         //todo replace getting from Request class
@@ -102,7 +102,7 @@ class Router
     private function preProcessPattern($route_config)
     {
         $pattern = $route_config['pattern'];
-        $variables = $route_config['variables'];
+        $variables = isset($route_config['variables']) ? $route_config['variables'] : [];
         $result = str_replace('/', '\/', $pattern);
 
         //get variables from pattern
